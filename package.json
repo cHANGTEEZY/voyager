@@ -4,8 +4,11 @@
   "version": "1.0.0",
   "dependencies": {
     "@better-auth/expo": "^1.6.20",
+    "@expo-google-fonts/inter": "^0.4.2",
     "@expo/ui": "~56.0.18",
     "@gorhom/bottom-sheet": "^5.2.14",
+    "@hugeicons/core-free-icons": "^4.2.1",
+    "@hugeicons/react-native": "^1.0.14",
     "@libsql/client": "^0.17.4",
     "@prisma/adapter-libsql": "^7.8.0",
     "@prisma/client": "^7.8.0",

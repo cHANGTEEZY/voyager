@@ -1,8 +1,16 @@
-@import 'tailwindcss';
-@import 'uniwind';
-@import 'heroui-native/styles';
+@import "tailwindcss";
+@import "uniwind";
+@import "heroui-native/styles";
 
 @source '../node_modules/heroui-native/lib';
+
+@theme {
+  --font-sans: "Inter_400Regular";
+  --font-normal: "Inter_400Regular";
+  --font-medium: "Inter_500Medium";
+  --font-semibold: "Inter_600SemiBold";
+  --font-bold: "Inter_700Bold";
+}
 
 /*
  * HeroUI Native theme overrides.

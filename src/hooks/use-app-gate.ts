@@ -1,6 +1,6 @@
-import { authClient } from "@/lib/auth-client";
-import { secureStorage } from "@/lib/secure-store";
 import { STORAGE_KEYS } from "@/constants/storage-keys";
+import { authClient } from "@/lib/auth-client";
+import { secureStorage } from "@/lib/utils/secure-store";
 import { useEffect, useState } from "react";
 
 export type AppGateDestination =
@@ -9,10 +9,11 @@ export type AppGateDestination =
   | "/(auth)/welcome";
 
 export function useAppGate(): AppGateDestination | null {
-  const { data: session, isPending: isSessionPending } = authClient.useSession();
-  const [onboardingCompleted, setOnboardingCompleted] = useState<boolean | null>(
-    null,
-  );
+  const { data: session, isPending: isSessionPending } =
+    authClient.useSession();
+  const [onboardingCompleted, setOnboardingCompleted] = useState<
+    boolean | null
+  >(null);
 
   useEffect(() => {
     void secureStorage

@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 
-const settings = () => {
+const search = () => {
   return (
     <View>
-      <Text>settings</Text>
+      <Text>search</Text>
     </View>
   );
 };
 
-export default settings;
+export default search;
 
 const styles = StyleSheet.create({});

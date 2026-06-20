@@ -18,7 +18,11 @@ export default function HomeScreen() {
       className="flex-1 bg-background px-6"
       style={{ paddingTop: insets.top + 24, paddingBottom: insets.bottom + 24 }}
     >
-      <Typography.Heading type="h2" weight="bold" className="mb-2 text-foreground">
+      <Typography.Heading
+        type="h2"
+        weight="bold"
+        className="mb-2 text-foreground"
+      >
         Welcome back{session?.user?.name ? `, ${session.user.name}` : ""}
       </Typography.Heading>
       <Typography.Paragraph color="muted" className="mb-8">
