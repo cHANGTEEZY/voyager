@@ -1,4 +1,3 @@
-import * as SecureStore from "expo-secure-store";
 import axios, {
   AxiosHeaders,
   type AxiosError,
@@ -7,10 +6,11 @@ import axios, {
   type InternalAxiosRequestConfig,
   type RawAxiosHeaders,
 } from "axios";
+import * as SecureStore from "expo-secure-store";
 
-const BASE_URL =
-  (process.env.EXPO_PUBLIC_API_URL as string | undefined) ??
-  "http://localhost:8000/api";
+import { getApiBaseUrl } from "./get-api-url";
+
+const BASE_URL = getApiBaseUrl();
 const DEFAULT_TIMEOUT_MS = 15_000;
 const MAX_RETRIES = 3;
 const RETRY_BASE_DELAY_MS = 300;
@@ -297,7 +297,10 @@ function normalizeError(error: AxiosError): ApiError {
   }
 
   const message = String(
-    data?.message ?? data?.error ?? error.message ?? "An unexpected error occurred",
+    data?.message ??
+      data?.error ??
+      error.message ??
+      "An unexpected error occurred",
   );
   const code = String(data?.code ?? `HTTP_${status}`);
   const validationErrors = parseValidationErrors(data?.errors);

@@ -1,5 +1,14 @@
-const AuthLayout = () => {
-  return <div>AuthLayout</div>;
-};
+import { AuthRedirectGuard } from "@/components/auth/auth-redirect-guard";
+import { Stack } from "expo-router";
 
-export default AuthLayout;
+export default function AuthLayout() {
+  return (
+    <AuthRedirectGuard>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="welcome" />
+        <Stack.Screen name="login" />
+        <Stack.Screen name="signup" />
+      </Stack>
+    </AuthRedirectGuard>
+  );
+}
