@@ -1,19 +1,35 @@
-import 'react-native-gesture-handler';
+import "react-native-gesture-handler";
 
-import { Stack } from 'expo-router';
-import { HeroUINativeProvider } from 'heroui-native';
-import { StyleSheet } from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { HeroUINativeProvider } from "heroui-native";
+import { StyleSheet } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-import '../global.css';
+import { Stack } from "expo-router";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import "../global.css";
 
 export default function RootLayout() {
   return (
-    <GestureHandlerRootView style={styles.root}>
-      <HeroUINativeProvider>
-        <Stack screenOptions={{ headerShown: false }} />
-      </HeroUINativeProvider>
-    </GestureHandlerRootView>
+    <SafeAreaProvider>
+      <GestureHandlerRootView style={styles.root}>
+        <HeroUINativeProvider>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen
+              name="(auth)"
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="(tabs)"
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack>
+        </HeroUINativeProvider>
+      </GestureHandlerRootView>
+    </SafeAreaProvider>
   );
 }
 

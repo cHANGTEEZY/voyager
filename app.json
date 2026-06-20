@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "travel",
-    "slug": "travel",
+    "name": "Voyager",
+    "slug": "Voyager",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "travel",
+    "scheme": "Voyager",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"
@@ -34,7 +34,10 @@
             "imageWidth": 76
           }
         }
-      ]
+      ],
+      "expo-image",
+      "expo-status-bar",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true,
