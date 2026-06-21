@@ -4,75 +4,67 @@ import { generateInitials } from "@/lib/utils/get-intials";
 import Settings02Icon from "@hugeicons/core-free-icons/Settings02Icon";
 import { HugeiconsIcon } from "@hugeicons/react-native";
 import { Button } from "heroui-native";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import UserMetrics from "./components/UserMetrics";
-import UserPosts from "./components/UserPosts";
+import { Image, StyleSheet, Text, View } from "react-native";
 
-const Profile = () => {
+import UserMetrics from "./UserMetrics";
+
+function ProfileHeader() {
   const { data } = authClient.useSession();
-
   const user = data?.user;
-
   const initials = generateInitials(user?.name);
   const hasImage = !!user?.image;
 
   return (
-    <ScrollView style={styles.flex1}>
+    <View className="gap-4 pb-4">
       <AppHeader>
         <AppHeader.Back />
         <AppHeader.Spacer />
         <AppHeader.Logo />
         <AppHeader.Spacer />
         <HeaderButton
-          accessibilityLabel="Open profile menu"
+          accessibilityLabel="Open settings"
           onPress={() => console.log("Open settings")}
         >
           <HugeiconsIcon icon={Settings02Icon} />
         </HeaderButton>
       </AppHeader>
 
-      <View style={styles.flex1} className="gap-4">
-        <View style={styles.profileView}>
-          {hasImage ? (
-            <Image
-              source={{ uri: user?.image as string }}
-              style={styles.avatar}
-              resizeMode="cover"
-            />
-          ) : (
-            <View style={styles.initialsAvatar}>
-              <Text style={styles.initialsText}>{initials}</Text>
-            </View>
-          )}
+      <View style={styles.profileView}>
+        {hasImage ? (
+          <Image
+            source={{ uri: user?.image as string }}
+            style={styles.avatar}
+            resizeMode="cover"
+          />
+        ) : (
+          <View style={styles.initialsAvatar}>
+            <Text style={styles.initialsText}>{initials}</Text>
+          </View>
+        )}
 
-          <Text style={styles.nameText}>{user?.name ?? "No name"}</Text>
+        <Text style={styles.nameText}>{user?.name ?? "No name"}</Text>
 
-          {!!user?.email && <Text style={styles.emailText}>{user.email}</Text>}
-        </View>
+        {!!user?.email && <Text style={styles.emailText}>{user.email}</Text>}
+      </View>
 
-        <UserMetrics />
+      <UserMetrics />
 
+      <View className="px-6">
         <Button
           variant="outline"
           onPress={() => console.log("Edit profile pressed")}
-          className="border-2 flex "
+          className="border-2"
         >
           <Button.Label>Edit Profile</Button.Label>
         </Button>
-
-        <UserPosts />
       </View>
-    </ScrollView>
+    </View>
   );
-};
+}
 
-export default Profile;
+export default ProfileHeader;
 
 const styles = StyleSheet.create({
-  flex1: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
   profileView: {
     justifyContent: "center",
     alignItems: "center",

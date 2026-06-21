@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    gap: 10,
+    gap: 16,
   },
 
   buttonStyles: {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
 
   typographyHeading: {
-    fontWeight: "600",
+    fontWeight: "700",
     fontSize: 18,
   },
 
