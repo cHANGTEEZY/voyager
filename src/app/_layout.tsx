@@ -1,6 +1,7 @@
 import "react-native-gesture-handler";
 
 import { useAppFonts } from "@/lib/fonts/use-app-fonts";
+import { useThemeBootstrap } from "@/hooks/use-theme-preference";
 import { HeroUINativeProvider } from "heroui-native";
 import { useEffect } from "react";
 import { StyleSheet } from "react-native";
@@ -15,6 +16,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const { fontsLoaded, fontError } = useAppFonts();
+  useThemeBootstrap();
 
   useEffect(() => {
     if (fontsLoaded || fontError) {

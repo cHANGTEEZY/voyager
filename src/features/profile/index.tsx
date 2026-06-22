@@ -3,13 +3,16 @@ import { authClient } from "@/lib/auth-client";
 import { generateInitials } from "@/lib/utils/get-intials";
 import Settings02Icon from "@hugeicons/core-free-icons/Settings02Icon";
 import { HugeiconsIcon } from "@hugeicons/react-native";
+import { Link } from "expo-router";
 import { Button } from "heroui-native";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image, ScrollView, Text, useColorScheme, View } from "react-native";
 import UserMetrics from "./components/UserMetrics";
 import UserPosts from "./components/UserPosts";
 
 const Profile = () => {
   const { data } = authClient.useSession();
+
+  const darkMode = useColorScheme() === "dark";
 
   const user = data?.user;
 
@@ -17,7 +20,10 @@ const Profile = () => {
   const hasImage = !!user?.image;
 
   return (
-    <ScrollView style={styles.flex1}>
+    <ScrollView
+      className="flex-1 bg-background"
+      showsVerticalScrollIndicator={false}
+    >
       <AppHeader>
         <AppHeader.Back />
         <AppHeader.Spacer />
@@ -27,27 +33,40 @@ const Profile = () => {
           accessibilityLabel="Open profile menu"
           onPress={() => console.log("Open settings")}
         >
-          <HugeiconsIcon icon={Settings02Icon} />
+          <Link href={"/settings"}>
+            <HugeiconsIcon
+              icon={Settings02Icon}
+              color={darkMode ? "white" : "black"}
+            />
+          </Link>
         </HeaderButton>
       </AppHeader>
 
-      <View style={styles.flex1} className="gap-4">
-        <View style={styles.profileView}>
+      <View className="flex-1 gap-4">
+        <View className="my-2.5 items-center justify-center">
           {hasImage ? (
             <Image
               source={{ uri: user?.image as string }}
-              style={styles.avatar}
+              className="mb-4 size-[110px] rounded-full"
               resizeMode="cover"
             />
           ) : (
-            <View style={styles.initialsAvatar}>
-              <Text style={styles.initialsText}>{initials}</Text>
+            <View className="mb-4 size-[110px] items-center justify-center rounded-full bg-default">
+              <Text className="text-3xl font-bold text-default-foreground">
+                {initials}
+              </Text>
             </View>
           )}
 
-          <Text style={styles.nameText}>{user?.name ?? "No name"}</Text>
+          <Text className="mb-1.5 text-center text-[22px] font-bold text-foreground">
+            {user?.name ?? "No name"}
+          </Text>
 
-          {!!user?.email && <Text style={styles.emailText}>{user.email}</Text>}
+          {!!user?.email && (
+            <Text className="text-center text-[15px] text-muted">
+              {user.email}
+            </Text>
+          )}
         </View>
 
         <UserMetrics />
@@ -55,7 +74,7 @@ const Profile = () => {
         <Button
           variant="outline"
           onPress={() => console.log("Edit profile pressed")}
-          className="border-2 flex "
+          className="flex border-2"
         >
           <Button.Label>Edit Profile</Button.Label>
         </Button>
@@ -67,48 +86,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-const styles = StyleSheet.create({
-  flex1: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  profileView: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 10,
-    paddingHorizontal: 24,
-  },
-  avatar: {
-    width: 110,
-    height: 110,
-    borderRadius: 55,
-    marginBottom: 16,
-  },
-  initialsAvatar: {
-    width: 110,
-    height: 110,
-    borderRadius: 55,
-    backgroundColor: "#1f2937",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 16,
-  },
-  initialsText: {
-    color: "#fff",
-    fontSize: 32,
-    fontWeight: "700",
-  },
-  nameText: {
-    fontSize: 22,
-    fontWeight: "700",
-    color: "#111827",
-    marginBottom: 6,
-    textAlign: "center",
-  },
-  emailText: {
-    fontSize: 15,
-    color: "#6b7280",
-    textAlign: "center",
-  },
-});

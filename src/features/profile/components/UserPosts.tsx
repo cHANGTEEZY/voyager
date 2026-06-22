@@ -23,7 +23,8 @@ const UserPosts = () => {
           <Image source={item.image} style={styles.image} contentFit="cover" />
         </View>
       )}
-      contentContainerStyle={styles.contentContainer}
+      // contentContainerStyle={styles.contentContainer}
+      showsVerticalScrollIndicator={false}
     />
   );
 };

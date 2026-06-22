@@ -12,7 +12,9 @@ export type AppHeaderProps = {
 
 function AppHeaderRoot({ children, className }: AppHeaderProps) {
   return (
-    <View className="min-h-11 flex-row items-center gap-1">{children}</View>
+    <View className={`min-h-11 flex-row items-center gap-1 ${className ?? ""}`}>
+      {children}
+    </View>
   );
 }
 

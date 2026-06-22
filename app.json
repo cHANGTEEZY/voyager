@@ -8,7 +8,9 @@
     "scheme": "Voyager",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.changteezy.Voyager",
+      "appleTeamId": "XPZVK3T5VQ"
     },
     "android": {
       "usesCleartextTraffic": true,
