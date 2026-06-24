@@ -5,7 +5,7 @@ import { LabeledSeparator } from "@/components/ui/labeled-separator";
 import { authClient } from "@/lib/auth-client";
 import getFieldErrorMessage from "@/lib/utils/get-field-error";
 import { useForm } from "@tanstack/react-form";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { Button, Input, Spinner, TextField, Typography } from "heroui-native";
 import { useState } from "react";
 import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
@@ -31,6 +31,8 @@ export default function SignInScreen() {
       onSubmit: loginSchema,
     },
     onSubmit: async ({ value }) => {
+      setError(null);
+
       try {
         const { error: signInError } = await authClient.signIn.email({
           email: value.email,
@@ -42,8 +44,15 @@ export default function SignInScreen() {
           setError(signInError.message ?? "Sign in failed. Please try again.");
           return;
         }
-      } catch (error) {
-        console.error(error);
+
+        router.replace("/(tabs)");
+      } catch (caughtError: unknown) {
+        console.error(caughtError);
+        setError(
+          caughtError instanceof Error
+            ? caughtError.message
+            : "Unable to reach the server. Check your connection and try again.",
+        );
       }
     },
   });

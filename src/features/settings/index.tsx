@@ -1,4 +1,4 @@
-import AppHeader from "@/components/AppHeader";
+import AppHeader from "@/components/AppHeader/AppHeader";
 import {
   SettingsGroup,
   SettingsProfileCard,
@@ -15,11 +15,11 @@ import Link01Icon from "@hugeicons/core-free-icons/Link01Icon";
 import Location01Icon from "@hugeicons/core-free-icons/Location01Icon";
 import LockIcon from "@hugeicons/core-free-icons/LockIcon";
 import Logout03Icon from "@hugeicons/core-free-icons/Logout03Icon";
-import { HugeiconsIcon } from "@hugeicons/react-native";
 import Mail01Icon from "@hugeicons/core-free-icons/Mail01Icon";
 import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
 import Shield02Icon from "@hugeicons/core-free-icons/Shield02Icon";
 import User02Icon from "@hugeicons/core-free-icons/User02Icon";
+import { HugeiconsIcon } from "@hugeicons/react-native";
 import Constants from "expo-constants";
 import { router } from "expo-router";
 import { Button, Switch, Typography } from "heroui-native";
@@ -61,7 +61,11 @@ export default function Settings() {
       >
         <AppHeader className="px-0">
           <AppHeader.Back />
-          <Typography.Heading type="h3" weight="bold" className="text-foreground">
+          <Typography.Heading
+            type="h3"
+            weight="bold"
+            className="text-foreground"
+          >
             Settings
           </Typography.Heading>
         </AppHeader>
@@ -143,7 +147,10 @@ export default function Settings() {
               icon={Moon02Icon}
               label="Dark Mode"
               accessory={
-                <Switch isSelected={isDarkMode} onSelectedChange={setDarkMode} />
+                <Switch
+                  isSelected={isDarkMode}
+                  onSelectedChange={setDarkMode}
+                />
               }
             />
             <SettingsRow

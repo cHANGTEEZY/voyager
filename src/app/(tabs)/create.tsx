@@ -1,13 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
+import SafeAreaWrapper from "@/components/wrappers/SafeAreaWrapper";
+import CreateForm from "@/features/create";
 
-const create = () => {
+const CreateScreen = () => {
   return (
-    <View>
-      <Text>create</Text>
-    </View>
+    <SafeAreaWrapper>
+      <CreateForm />
+    </SafeAreaWrapper>
   );
 };
 
-export default create;
-
-const styles = StyleSheet.create({});
+export default CreateScreen;

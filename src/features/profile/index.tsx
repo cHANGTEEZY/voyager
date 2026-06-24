@@ -1,18 +1,15 @@
-import AppHeader, { HeaderButton } from "@/components/AppHeader";
+import AppHeader from "@/components/AppHeader";
 import { authClient } from "@/lib/auth-client";
 import { generateInitials } from "@/lib/utils/get-intials";
 import Settings02Icon from "@hugeicons/core-free-icons/Settings02Icon";
-import { HugeiconsIcon } from "@hugeicons/react-native";
-import { Link } from "expo-router";
+import { router } from "expo-router";
 import { Button } from "heroui-native";
-import { Image, ScrollView, Text, useColorScheme, View } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
 import UserMetrics from "./components/UserMetrics";
 import UserPosts from "./components/UserPosts";
 
 const Profile = () => {
   const { data } = authClient.useSession();
-
-  const darkMode = useColorScheme() === "dark";
 
   const user = data?.user;
 
@@ -25,21 +22,13 @@ const Profile = () => {
       showsVerticalScrollIndicator={false}
     >
       <AppHeader>
-        <AppHeader.Back />
-        <AppHeader.Spacer />
-        <AppHeader.Logo />
-        <AppHeader.Spacer />
-        <HeaderButton
-          accessibilityLabel="Open profile menu"
-          onPress={() => console.log("Open settings")}
-        >
-          <Link href={"/settings"}>
-            <HugeiconsIcon
-              icon={Settings02Icon}
-              color={darkMode ? "white" : "black"}
-            />
-          </Link>
-        </HeaderButton>
+        <AppHeader.Back reserveSpace />
+        <AppHeader.Logo centered />
+        <AppHeader.IconButton
+          icon={Settings02Icon}
+          label="Open settings"
+          onPress={() => router.push("/settings")}
+        />
       </AppHeader>
 
       <View className="flex-1 gap-4">

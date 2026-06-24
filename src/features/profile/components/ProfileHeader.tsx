@@ -1,8 +1,8 @@
-import AppHeader, { HeaderButton } from "@/components/AppHeader";
+import AppHeader from "@/components/AppHeader";
 import { authClient } from "@/lib/auth-client";
 import { generateInitials } from "@/lib/utils/get-intials";
 import Settings02Icon from "@hugeicons/core-free-icons/Settings02Icon";
-import { HugeiconsIcon } from "@hugeicons/react-native";
+import { router } from "expo-router";
 import { Button } from "heroui-native";
 import { Image, StyleSheet, Text, View } from "react-native";
 
@@ -17,16 +17,13 @@ function ProfileHeader() {
   return (
     <View className="gap-4 pb-4">
       <AppHeader>
-        <AppHeader.Back />
-        <AppHeader.Spacer />
-        <AppHeader.Logo />
-        <AppHeader.Spacer />
-        <HeaderButton
-          accessibilityLabel="Open settings"
-          onPress={() => console.log("Open settings")}
-        >
-          <HugeiconsIcon icon={Settings02Icon} />
-        </HeaderButton>
+        <AppHeader.Back reserveSpace />
+        <AppHeader.Logo centered />
+        <AppHeader.IconButton
+          icon={Settings02Icon}
+          label="Open settings"
+          onPress={() => router.push("/settings")}
+        />
       </AppHeader>
 
       <View style={styles.profileView}>

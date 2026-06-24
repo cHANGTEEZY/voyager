@@ -3,6 +3,7 @@ import { PasswordField } from "@/components/auth/password-field";
 import { SocialAuthButtons } from "@/components/auth/social-auth-buttons";
 import { LabeledSeparator } from "@/components/ui/labeled-separator";
 import { authClient } from "@/lib/auth-client";
+import getFieldErrorMessage from "@/lib/utils/get-field-error";
 import { useForm } from "@tanstack/react-form";
 import { Link, router } from "expo-router";
 import { Button, Input, Spinner, TextField, Typography } from "heroui-native";
@@ -18,8 +19,6 @@ const signUpSchema = z.object({
 });
 
 type SignUpValues = z.infer<typeof signUpSchema>;
-
-import getFieldErrorMessage from "@/lib/utils/get-field-error";
 
 export default function SignUpScreen() {
   const insets = useSafeAreaInsets();
